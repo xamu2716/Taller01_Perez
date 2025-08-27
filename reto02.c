@@ -1,17 +1,24 @@
-int main() {
-    char *q = NULL;
-    printf("Requesting space for \"Goodbye\" \n");
-    q = (char *)malloc(strlen("Goodbye")+1);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-    if (!q) {
-        perror("Failed to allocate space because");
-        exit(1);
+int main() {
+    char *q = NULL; // Declarar puntero q e inicializarlo en NULL
+
+    printf("Requesting space for \"Goodbye\" \n"); // Mensaje de depuración
+    q = (char *)malloc(strlen("Goodbye")+1); // Reservar memoria 
+
+    if (!q) { // Verificar si la memoria fue asignada correctamente
+        perror("Failed to allocate space because"); // Imprimir mensaje de error
+        exit(1); // Salir del programa
     }
 
-    printf("About to copy \"Goodbye\" to q at address %s \n", q);
-    strcpy(q, "Goodbye");
-    printf("String copied\n");
-    printf("%s \n", q);
+    printf("About to copy \"Goodbye\" to q at address %p \n", q); // Imprimir mensaje y la dirección de memoria de q
+    strcpy(q, "Goodbye"); // Copiar a q
+    printf("String copied\n"); // Mensaje de confirmación de copia
+    printf("%s \n", q); // Imprimir lo que hay en q
 
-    return 0;
+    free(q); // Liberar memoria
+
+    return 0; // Retornar 0
 }
